@@ -1,0 +1,17 @@
+{{ $currentScope := .}}
+{{ range $path, $_ :=  .Files.Glob .Values.dashboards }}
+  {{- with $currentScope}}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+    dashboard-path: {{ $path }}
+  labels:
+    grafana_dashboard: '1'
+  name: {{ base $path | replace ".json" "" }}
+data:
+  {{ base $path }}: |
+    {{ (.Files.Get $path) | replace "\n" "" | replace "${DS_PROMETHEUS}" .Values.prometheus.datasource.name | indent 4 }}
+  {{- end }}
+{{ end }}

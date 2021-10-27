@@ -1,0 +1,5 @@
+dashboards: dashboards/*.json
+
+prometheus:
+  datasource:
+    name: prometheus

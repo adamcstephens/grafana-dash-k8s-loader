@@ -1,0 +1,8 @@
+apiVersion: v2
+name: grafana-dash-k8s-loader
+description: A Helm chart for loading Grafana dashboard files into k8s ConfigMaps
+version: 0.1.0
+appVersion: "0.1.0"
+
+sources:
+  - https://github.com/adamcstephens/grafana-dash-k8s-loader
